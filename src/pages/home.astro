@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { ghlHomeContent } from '../data/ghl-home-content.js';
+import { ghlContent } from '../data/ghl-home-content.js';
 
-const localBusinessSchema = {
+const schema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Stay In Your Home Today",
@@ -16,20 +16,37 @@ const localBusinessSchema = {
     "addressCountry": "US"
   },
   "areaServed": [
-    { "@type": "State", "name": "Utah" },
-    { "@type": "AdministrativeArea", "name": "Salt Lake County" },
-    { "@type": "AdministrativeArea", "name": "Tooele County" },
-    { "@type": "AdministrativeArea", "name": "Weber County" }
+    {
+      "@type": "State",
+      "name": "Utah"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Salt Lake County"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Tooele County"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Weber County"
+    }
   ],
-  "knowsAbout": ["Foreclosure Prevention", "Short Sale", "Loan Modification", "Distressed Property"],
+  "knowsAbout": [
+    "Foreclosure Prevention",
+    "Short Sale",
+    "Loan Modification",
+    "Distressed Property"
+  ],
   "hasCredential": "CDPS — Certified Distressed Property Specialist"
 };
 ---
 
 <BaseLayout
   title="Behind on payments? You still have options."
-  description="Whether you want to stay in your home or sell it and walk away with equity, we're here to help you make the right move for you."
-  schema={localBusinessSchema}
+  description="Whether you want to stay in your home or sell it and walk away with equity, the Tru Agency Team helps Utah homeowners facing foreclosure understand every option — free and confidential."
+  schema={schema}
 >
-  <Fragment set:html={ghlHomeContent} />
+  <Fragment set:html={ghlContent} />
 </BaseLayout>

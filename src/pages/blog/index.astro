@@ -1,58 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import CTABlock from '../../components/CTABlock.astro';
+import { ghlContent } from '../../data/ghl-blog-content.js';
 
-// Collect all blog posts from src/pages/blog/*.astro
-// Each post file should export: title, description, author, date, slug, ogImage
-// We manually list known post files here to avoid Astro.glob throwing when empty.
-// Add new entries here as you create new blog post files.
-const postFiles: { frontmatter?: Record<string, unknown>; url?: string }[] = [];
-
-interface PostFrontmatter {
-  title: string;
-  description: string;
-  author?: string;
-  date?: string;
-  slug?: string;
-  ogImage?: string;
-  eyebrow?: string;
-  draft?: boolean;
-}
-
-// Filter out index itself and drafts; sort newest first
-const posts = postFiles
-  .filter(p => {
-    const fm = p.frontmatter as PostFrontmatter | undefined;
-    return fm && fm.title && !fm.draft;
-  })
-  .map(p => {
-    const fm = p.frontmatter as PostFrontmatter;
-    const urlPath = p.url ?? '';
-    return {
-      title: fm.title,
-      description: fm.description ?? '',
-      author: fm.author ?? 'Tiffany Lancaster',
-      date: fm.date ?? '',
-      slug: fm.slug ?? urlPath.replace('/blog/', ''),
-      ogImage: fm.ogImage ?? '',
-      eyebrow: fm.eyebrow ?? 'Utah Foreclosure',
-      url: urlPath,
-    };
-  })
-  .sort((a, b) => (a.date < b.date ? 1 : -1));
-
-// Also include the standalone /foreclosure-timeline post as a "featured" entry
-const featuredPost = {
-  title: 'Utah Foreclosure Timeline: How Long Does Foreclosure Take in Utah?',
-  description:
-    'Think foreclosure happens fast? Utah\'s process takes a minimum of 240 days — but your options expire long before the auction. CDPS-certified broker Tiffany Lancaster breaks down every stage.',
-  author: 'Tiffany Lancaster',
-  date: '2026-05-01',
-  url: '/foreclosure-timeline',
-  eyebrow: 'Education Series · Utah Foreclosure',
-};
-
-const blogSchema = {
+const schema = {
   "@context": "https://schema.org",
   "@type": "Blog",
   "name": "Stay In Your Home Today — Foreclosure Education Blog",
@@ -67,76 +17,9 @@ const blogSchema = {
 ---
 
 <BaseLayout
-  title="Foreclosure Education Blog | Stay In Your Home Today — Utah"
-  description="Free guides on Utah foreclosure timelines, your options after a Notice of Default, and how to protect your home. Written by CDPS-certified broker Tiffany Lancaster."
-  schema={blogSchema}
+  title="Foreclosure Resources & Blog | Stay In Your Home Today"
+  description="Free guides and resources on Utah foreclosure timelines, your options after a Notice of Default, and how to protect your home — from CDPS-certified broker Tiffany Lancaster."
+  schema={schema}
 >
-
-  <section class="page-header">
-    <div class="container">
-      <div class="eyebrow">Foreclosure Education</div>
-      <h1>Knowledge is your greatest defense.<br/>You deserve to know your options.</h1>
-      <p style="max-width:680px;">
-        Most homeowners facing foreclosure don't lose their homes because they ran out of time.
-        They lose them because nobody told them what was possible.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-
-      <!-- Featured post -->
-      <div style="margin-bottom:3rem;">
-        <div class="eyebrow">Featured Guide</div>
-        <div class="blog-card" style="flex-direction:row; align-items:stretch; max-width:860px;">
-          <div class="blog-card-body" style="border-left:5px solid var(--color-teal);">
-            <div class="blog-card-eyebrow">{featuredPost.eyebrow}</div>
-            <h2 style="font-size:1.35rem; margin-bottom:0.75rem;">
-              <a href={featuredPost.url}>{featuredPost.title}</a>
-            </h2>
-            <p style="font-size:0.95rem;">{featuredPost.description}</p>
-            <div class="blog-card-meta" style="margin-top:1rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
-              <span>By {featuredPost.author} · {featuredPost.date ? new Date(featuredPost.date).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' }) : ''}</span>
-              <a href={featuredPost.url} class="btn btn--primary" style="padding:0.6rem 1.25rem; font-size:0.9rem;">Read the Guide →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dynamic blog posts -->
-      {posts.length > 0 ? (
-        <>
-          <div class="eyebrow" style="margin-bottom:1.25rem;">All Articles</div>
-          <div class="grid-2">
-            {posts.map(post => (
-              <article class="blog-card">
-                <div class="blog-card-body">
-                  <div class="blog-card-eyebrow">{post.eyebrow}</div>
-                  <h3><a href={post.url}>{post.title}</a></h3>
-                  <p>{post.description}</p>
-                  <div class="blog-card-meta">
-                    By {post.author}
-                    {post.date && ` · ${new Date(post.date).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' })}`}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </>
-      ) : (
-        <p style="color:var(--color-gray-500); font-size:0.95rem;">
-          More articles coming soon. Check back or <a href="/contactus">contact us directly</a>.
-        </p>
-      )}
-
-    </div>
-  </section>
-
-  <CTABlock
-    heading="Not sure what your options are?"
-    subtext="Talk to a CDPS-certified agent — free, confidential, and no obligation."
-    primaryLabel="Get My Free Options Review"
-  />
-
+  <Fragment set:html={ghlContent} />
 </BaseLayout>

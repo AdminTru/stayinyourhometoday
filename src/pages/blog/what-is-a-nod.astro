@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { ghlContent } from '../../data/ghl-what-is-a-nod-content.js';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Is a Notice of Default (NOD)? Utah Homeowners Guide",
+  "author": {
+    "@type": "Person",
+    "name": "Tiffany Lancaster"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Stay In Your Home Today"
+  },
+  "url": "https://stayinyourhometoday.com/blog/what-is-a-nod"
+};
+---
+
+<BaseLayout
+  title="What Is a Notice of Default? Utah Homeowners Guide | Stay In Your Home Today"
+  description="A Notice of Default is the first formal step in Utah's foreclosure process. CDPS-certified broker Tiffany Lancaster explains what it means, your timeline, and every option available."
+  schema={schema}
+>
+  <Fragment set:html={ghlContent} />
+</BaseLayout>
