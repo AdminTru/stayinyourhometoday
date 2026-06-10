@@ -2,8 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTABlock from '../components/CTABlock.astro';
 
-// Read ?name= from URL for personalized greeting
-const nameParam = Astro.url.searchParams.get('name') ?? '';
+/*
+  NOTE: This is a fully static page (output: 'static').
+  Astro.url.searchParams is always empty at build time — there is no
+  server context to read query params from. ALL personalization
+  (fn, nod, ref, addr, city, state) is handled client-side in the
+  <script> block below.
+
+  Supported URL params (from direct-mail QR codes):
+    ?fn=John          — first name
+    ?ln=Clark         — last name (available for future use)
+    ?addr=685+E+400+N — property address (available for future use)
+    ?city=Spanish+Fork
+    ?state=UT
+    ?nod=04/17/26     — Notice of Default date in MM/DD/YY format
+    ?ref=virgo_6126a5 — campaign tracking code (stored to sessionStorage)
+*/
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
@@ -38,25 +52,32 @@ const localBusinessSchema = {
   <!-- ===================== HERO ===================== -->
   <section class="hero">
     <div class="container" style="position:relative;z-index:1;">
-      <h1>
-        Hi{nameParam ? ` ${nameParam}` : ''}, We Know You're
+
+      <!--
+        H1 rendered as static HTML first. JS below swaps in the
+        first name if ?fn= is present. If no fn, reads "Hi, We Know..."
+        Either way the full text is present for crawlers on initial load.
+      -->
+      <h1 id="hero-heading">
+        Hi, We Know You're
         <span class="highlight">Worried About Your Home</span>
       </h1>
+
       <p class="hero-sub">
         We're reaching out because you still have time to explore your options —
         and we're here to help you understand what those options are.
       </p>
 
-      <!-- Countdown timers -->
+      <!-- Countdown timers — static fallback values in HTML, JS overwrites if ?nod= present -->
       <div class="timer-row">
         <a href="/contactus" class="timer-widget" aria-label="Days since Notice of Default — click to get help">
           <div class="timer-label">Since Notice of Default</div>
-          <div class="timer-display" id="timer-nod">—</div>
+          <div class="timer-display" id="timer-nod">0</div>
           <div class="timer-sublabel">days elapsed</div>
         </a>
         <a href="/contactus" class="timer-widget" aria-label="Days until Foreclosure Auction — click to get help">
           <div class="timer-label">Until Foreclosure Auction</div>
-          <div class="timer-display" id="timer-auction">—</div>
+          <div class="timer-display" id="timer-auction">240</div>
           <div class="timer-sublabel">days remaining (est.)</div>
         </a>
       </div>
@@ -82,6 +103,7 @@ const localBusinessSchema = {
           ></iframe>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -286,32 +308,114 @@ const localBusinessSchema = {
     primaryLabel="Schedule My Free Review"
   />
 
+  <!-- ===================== CLIENT-SIDE PERSONALIZATION =====================
+    Runs after DOM is ready. Reads URL params — works at runtime in any browser
+    regardless of how the static HTML was generated.
+
+    Supported params:
+      fn    — first name          e.g. fn=John
+      ln    — last name           e.g. ln=Clark   (stored, not currently displayed)
+      addr  — address             e.g. addr=685+E+400+N
+      city  — city                e.g. city=Spanish+Fork
+      state — state               e.g. state=UT
+      nod   — NOD date MM/DD/YY   e.g. nod=04/17/26
+      ref   — campaign code       e.g. ref=virgo_6126a5
+  -->
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+
+      // ── 1. FIRST NAME → update H1 greeting ──────────────────────────────
+      const fn = params.get('fn');
+      if (fn && fn.trim()) {
+        const heading = document.getElementById('hero-heading');
+        if (heading) {
+          // Preserve the existing <span class="highlight"> child node
+          const highlightSpan = heading.querySelector('.highlight');
+          // Clear the heading and rebuild with name inserted
+          heading.textContent = '';
+          const textNode = document.createTextNode(`Hi ${fn.trim()}, We Know You're `);
+          heading.appendChild(textNode);
+          if (highlightSpan) {
+            heading.appendChild(highlightSpan);
+          } else {
+            const span = document.createElement('span');
+            span.className = 'highlight';
+            span.textContent = "Worried About Your Home";
+            heading.appendChild(span);
+          }
+        }
+      }
+
+      // ── 2. NOD DATE → calculate and display countdown timers ────────────
+      //
+      //  Format: MM/DD/YY  e.g. 04/17/26  → April 17, 2026
+      //  The auction estimate = NOD date + 240 days (Utah typical timeline)
+      //  Elapsed  = today − NOD date  (clamped to 0 minimum)
+      //  Remaining = 240 − elapsed    (clamped to 0 minimum)
+      //  If no ?nod= param: elapsed = 0, remaining = 240 (static fallback already in HTML)
+
+      const nodStr = params.get('nod');
+      if (nodStr && nodStr.trim()) {
+        // Parse MM/DD/YY — treat 2-digit year as 20xx
+        const parts = nodStr.trim().split('/');
+        if (parts.length === 3) {
+          const mm  = parseInt(parts[0], 10);
+          const dd  = parseInt(parts[1], 10);
+          const yy  = parseInt(parts[2], 10);
+          const fullYear = yy < 100 ? 2000 + yy : yy;
+
+          // Month is 0-indexed in JS Date constructor
+          const nodDate = new Date(fullYear, mm - 1, dd);
+
+          if (!isNaN(nodDate.getTime())) {
+            const today = new Date();
+            // Zero out time components for whole-day diff
+            today.setHours(0, 0, 0, 0);
+            nodDate.setHours(0, 0, 0, 0);
+
+            const msPerDay   = 86_400_000;
+            const utahDays   = 240;
+            const elapsed    = Math.max(0, Math.floor((today.getTime() - nodDate.getTime()) / msPerDay));
+            const remaining  = Math.max(0, utahDays - elapsed);
+
+            const elapsedEl   = document.getElementById('timer-nod');
+            const remainingEl = document.getElementById('timer-auction');
+            if (elapsedEl)   elapsedEl.textContent   = elapsed.toString();
+            if (remainingEl) remainingEl.textContent = remaining.toString();
+          }
+        }
+      }
+      // If no valid nod param, the static HTML fallback (0 / 240) stays as-is.
+
+      // ── 3. REF CODE → store campaign tracking code ──────────────────────
+      //  Stored in sessionStorage so it survives navigation to /contactus
+      //  and can be read by your form embed or analytics.
+      const ref = params.get('ref');
+      if (ref && ref.trim()) {
+        try {
+          sessionStorage.setItem('siyht_ref', ref.trim());
+        } catch (_) {
+          // sessionStorage blocked (private mode / browser restriction) — ignore silently
+        }
+      }
+
+      // ── 4. ADDITIONAL PARAMS → available for future use ─────────────────
+      //  ln, addr, city, state are parsed but not currently displayed.
+      //  Stored to sessionStorage for potential use in the contact form.
+      const extras: Record<string, string | null> = {
+        ln:    params.get('ln'),
+        addr:  params.get('addr'),
+        city:  params.get('city'),
+        state: params.get('state'),
+      };
+      try {
+        Object.entries(extras).forEach(([k, v]) => {
+          if (v) sessionStorage.setItem(`siyht_${k}`, v);
+        });
+      } catch (_) { /* ignore */ }
+
+    })();
+  </script>
+
 </BaseLayout>
-
-<!-- Timer script — runs client-side, content degrades gracefully without JS -->
-<script>
-  // Timers are display-only decoration — content is fully readable without them
-  function setTimer(id: string, days: number) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = days.toString();
-  }
-
-  // Read ?nod=YYYY-MM-DD from URL if present, otherwise use a reasonable placeholder
-  const params = new URLSearchParams(window.location.search);
-  const nodStr = params.get('nod');
-
-  if (nodStr) {
-    const nodDate = new Date(nodStr);
-    const today = new Date();
-    const msPerDay = 86400000;
-    const elapsed = Math.max(0, Math.floor((today.getTime() - nodDate.getTime()) / msPerDay));
-    const utahMinDays = 240;
-    const remaining = Math.max(0, utahMinDays - elapsed);
-    setTimer('timer-nod', elapsed);
-    setTimer('timer-auction', remaining);
-  } else {
-    // Default display values when no NOD date is provided
-    setTimer('timer-nod', 0);
-    setTimer('timer-auction', 240);
-  }
-</script>

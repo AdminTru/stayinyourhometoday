@@ -1,1 +1,0 @@
-import"./hoisted.Dh5OnVfB.js";function t(e,o){const n=document.getElementById(e);n&&(n.textContent=o.toString())}const m=new URLSearchParams(window.location.search),i=m.get("nod");if(i){const e=new Date(i),a=Math.max(0,Math.floor((new Date().getTime()-e.getTime())/864e5)),s=Math.max(0,240-a);t("timer-nod",a),t("timer-auction",s)}else t("timer-nod",0),t("timer-auction",240);
