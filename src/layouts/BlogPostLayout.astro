@@ -1,0 +1,48 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+import CTABlock from '../components/CTABlock.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  author?: string;
+  datePublished?: string;
+  dateModified?: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  ogImage,
+  author = 'Tiffany Lancaster',
+  datePublished,
+  dateModified,
+  schema,
+} = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalUrl={canonicalUrl}
+  ogImage={ogImage}
+  ogType="article"
+  schema={schema}
+>
+  <slot name="hero" />
+
+  <article class="article-content">
+    <slot />
+    <AuthorBio />
+  </article>
+
+  <CTABlock
+    heading="Ready to explore your options?"
+    subtext="Talk to Tiffany Lancaster, CDPS-certified broker — free, confidential, and no obligation."
+  />
+</BaseLayout>

@@ -1,0 +1,457 @@
+---
+import BlogPostLayout from '../layouts/BlogPostLayout.astro';
+import CTABlock from '../components/CTABlock.astro';
+
+export const frontmatter = {
+  title: "Utah Foreclosure Timeline: How Long Does Foreclosure Take in Utah?",
+  description: "Think foreclosure happens fast? Utah's process takes a minimum of 240 days — but your options expire long before the auction. CDPS-certified broker Tiffany Lancaster breaks down every stage.",
+  author: "Tiffany Lancaster",
+  date: "2026-05-01",
+  eyebrow: "Education Series · Utah Foreclosure",
+};
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Utah Foreclosure Timeline: How Long Does Foreclosure Take in Utah?",
+  "description": "Think foreclosure happens fast? Utah's process takes a minimum of 240 days — but your options expire long before the auction.",
+  "author": {
+    "@type": "Person",
+    "name": "Tiffany Lancaster",
+    "jobTitle": "CDPS-Certified Broker",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Stay In Your Home Today / Tru Agency Team"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Stay In Your Home Today",
+    "url": "https://stayinyourhometoday.com"
+  },
+  "url": "https://stayinyourhometoday.com/foreclosure-timeline",
+  "datePublished": "2026-05-01",
+  "dateModified": "2026-05-01",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://stayinyourhometoday.com/foreclosure-timeline"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does foreclosure take in Utah?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Utah's non-judicial foreclosure process takes a minimum of 111 days from Notice of Default to trustee's sale, but most sales occur around the 240-day mark. The full timeline from first missed payment to auction typically spans 8–12 months."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a Notice of Default in Utah?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Notice of Default (NOD) is a public legal document recorded by your lender after you've missed payments — typically after 90+ days of delinquency. It officially starts the foreclosure clock in Utah. Once filed, you have 90 days before the lender can record a Notice of Trustee's Sale."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I stop foreclosure after a Notice of Default in Utah?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. After a Notice of Default, Utah homeowners have multiple options: reinstate the loan by paying all arrears, apply for a loan modification, pursue a short sale, sell the property traditionally, accept a cash offer, negotiate a deed-in-lieu, or file for bankruptcy protection. The best option depends on your equity, income, and timeline. A CDPS-certified broker can help you evaluate all paths."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Utah have a right of redemption after foreclosure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Utah is a non-judicial foreclosure state and does not have a post-sale right of redemption for non-judicial foreclosures. Once the trustee's sale is complete, the sale is final and you cannot reclaim the property by paying off the debt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long do I have to move out after foreclosure in Utah?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "After the trustee's sale, the new owner can begin eviction proceedings immediately. Utah eviction law requires a 3-day notice to vacate before filing an unlawful detainer action. The entire eviction process typically takes 3–6 weeks from the sale date. Staying beyond that point results in a court-ordered eviction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a short sale and foreclosure in Utah?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A short sale is a negotiated sale of your home for less than the mortgage balance, with lender approval, before the foreclosure auction occurs. It avoids the completed foreclosure on your credit report, may eliminate the deficiency balance, and gives you more control over the sale timeline. A completed foreclosure stays on your credit for 7 years and typically results in a larger credit score drop than a short sale."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a CDPS-certified broker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CDPS stands for Certified Distressed Property Specialist — a designation earned by real estate brokers who have completed specialized training in foreclosure alternatives, short sales, and working with lenders on behalf of distressed homeowners. Tiffany Lancaster at Stay In Your Home Today holds this certification and works exclusively on the homeowner's side."
+      }
+    }
+  ]
+};
+---
+
+<BlogPostLayout
+  title="Utah Foreclosure Timeline: How Long Does Foreclosure Take in Utah?"
+  description="Think foreclosure happens fast? Utah's process takes a minimum of 240 days — but your options expire long before the auction. CDPS-certified broker Tiffany Lancaster breaks down every stage."
+  canonicalUrl="https://stayinyourhometoday.com/foreclosure-timeline"
+  schema={[articleSchema, faqSchema]}
+>
+
+  <!-- Hero slot -->
+  <section class="page-header" slot="hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/home">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="/blog">Blog</a>
+        <span aria-hidden="true">›</span>
+        <span>Utah Foreclosure Timeline</span>
+      </nav>
+      <div class="eyebrow">Education Series · Utah Foreclosure</div>
+      <h1>Utah Foreclosure Timeline:<br/>How Long Does Foreclosure Take in Utah?</h1>
+      <p style="max-width:680px; margin-top:0.75rem;">
+        By <strong style="color:var(--color-teal);">Tiffany Lancaster, CDPS-Certified Broker</strong>
+        · Tru Agency Team · Published May 2026
+      </p>
+    </div>
+  </section>
+
+  <!-- TL;DR stat block -->
+  <section id="tldr" aria-label="Article summary">
+    <div class="tldr-block">
+      <h3>TL;DR — Key Numbers</h3>
+      <p>
+        Utah's non-judicial foreclosure process moves in three phases. From your first missed payment
+        to the trustee's sale, the minimum timeline is <strong>240+ days</strong> — but your best
+        options close much earlier. Here's the breakdown:
+      </p>
+      <div class="stat-grid" style="margin-top:1.25rem;">
+        <div class="stat-card">
+          <div class="stat-number">90</div>
+          <div class="stat-desc">Days delinquent before NOD is typically filed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">90</div>
+          <div class="stat-desc">Days after NOD before Notice of Trustee's Sale</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">21</div>
+          <div class="stat-desc">Minimum days from NTS to auction</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">240+</div>
+          <div class="stat-desc">Typical total days from first missed payment to sale</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout-warning" style="margin-bottom:2rem;">
+      <strong>⚠ Don't Confuse "Time Left" With "Options Left"</strong>
+      The auction may be 6 months away — but loan modification applications, short sale listings,
+      and deed-in-lieu negotiations need to begin <em>now</em>. Your options window is narrower
+      than your timeline window.
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <h2 id="overview">Utah is a Non-Judicial Foreclosure State — Here's What That Means</h2>
+  <p>
+    When people imagine foreclosure, they picture a courtroom — a judge reviewing the case, attorneys
+    arguing, a formal ruling. That's judicial foreclosure, and Utah doesn't use it for most mortgages.
+  </p>
+  <p>
+    Instead, Utah uses <strong>non-judicial foreclosure</strong>, which means your lender can foreclose
+    through a private trustee process without ever filing a lawsuit. There's no court date. There's no
+    opportunity to present your case to a judge. The process is governed by the deed of trust you signed
+    at closing — and it moves fast.
+  </p>
+  <p>
+    The good news: even in a non-judicial state, you have rights, you have time, and you have options.
+    Stay In Your Home Today and Tiffany Lancaster exist to make sure you know all of them before
+    that clock runs out.
+  </p>
+
+  <!-- Stage 1 -->
+  <h2 id="phase-1">Phase 1: Pre-Default and Notice of Default (Days 1–180)</h2>
+
+  <h3>Missed Payments: The Quiet Period</h3>
+  <p>
+    Most lenders will not begin foreclosure proceedings after a single missed payment. Typically,
+    the pre-foreclosure "quiet period" lasts 90–120 days. During this time, your lender will send
+    delinquency notices, may attempt to contact you about reinstatement or loss mitigation, and will
+    begin accumulating late fees.
+  </p>
+  <p>
+    This is actually your most powerful window — you have the maximum number of options available,
+    and your lender has the most incentive to work with you before incurring the legal costs of
+    foreclosure. Use it.
+  </p>
+
+  <div class="timeline-stage" style="margin:1.5rem 0;">
+    <div class="stage-badge">Day ~90–120</div>
+    <h3>Notice of Default (NOD) Filed</h3>
+    <div class="stage-duration">Utah Code § 57-1-24</div>
+    <p>
+      After 90+ days of missed payments, your lender (through the trustee named in your deed of trust)
+      records a <strong>Notice of Default</strong> with the county recorder. This is a public record.
+      You will receive a copy by certified mail. The NOD must state the default amount and advise you
+      of your right to cure.
+    </p>
+    <p style="margin-top:0.75rem;">
+      From the NOD recording date, you have exactly <strong>90 days</strong> before the trustee can
+      record a Notice of Trustee's Sale.
+    </p>
+  </div>
+
+  <h3>Your Rights During the NOD Period</h3>
+  <ul style="margin-bottom:1rem;">
+    <li><strong>Reinstatement:</strong> You can stop the foreclosure by paying all past-due amounts plus fees. In Utah, this right exists up to 5 business days before the trustee's sale.</li>
+    <li><strong>Loss Mitigation:</strong> Federal law (if your loan is federally backed) and CFPB rules require your servicer to evaluate you for alternatives before proceeding. You have the right to submit a complete loss mitigation application.</li>
+    <li><strong>Sale:</strong> You can sell the property at any time before the sale. If equity exists, a traditional or cash sale stops the foreclosure and puts money in your pocket.</li>
+    <li><strong>Short Sale Application:</strong> If you're underwater, you can begin negotiating a short sale with lender approval. This process takes time — begin it immediately after the NOD.</li>
+  </ul>
+
+  <div class="callout-warning">
+    <strong>⚠ The NOD Period Is When You Have the Most Leverage</strong>
+    Lenders prefer short sales, loan modifications, and reinstatements over completed foreclosures.
+    They lose money on foreclosures. Your leverage is highest right now — before the NTS is filed.
+    Contact Stay In Your Home Today immediately.
+  </div>
+
+  <!-- Stage 2 -->
+  <h2 id="phase-2">Phase 2: Notice of Trustee's Sale (Days 90–111+)</h2>
+
+  <div class="timeline-stage" style="margin:1.5rem 0;">
+    <div class="stage-badge">Day 90+ After NOD</div>
+    <h3>Notice of Trustee's Sale (NTS) Recorded</h3>
+    <div class="stage-duration">Utah Code § 57-1-25</div>
+    <p>
+      After the 90-day NOD waiting period, the trustee can record a <strong>Notice of Trustee's Sale</strong>.
+      This document sets the date, time, and place of the foreclosure auction. Utah law requires the
+      auction to be scheduled at least <strong>21 days</strong> after the NTS is recorded.
+    </p>
+    <p style="margin-top:0.75rem;">
+      The NTS must be:
+    </p>
+    <ul>
+      <li>Recorded with the county recorder</li>
+      <li>Mailed to you by certified mail</li>
+      <li>Posted on the property</li>
+      <li>Published in a local newspaper once per week for three consecutive weeks</li>
+    </ul>
+  </div>
+
+  <h3>What Changes After the NTS Is Filed</h3>
+  <p>
+    Options don't disappear at this stage — but they narrow significantly:
+  </p>
+  <ul style="margin-bottom:1.5rem;">
+    <li>Reinstatement is still available until 5 business days before the sale date</li>
+    <li>Short sales require active lender approval — if you haven't started the process, you're running out of time</li>
+    <li>Loan modification applications submitted after NTS filing may not be processed before the sale</li>
+    <li>Traditional sales must close before the auction date — 21+ days is a very tight closing window</li>
+    <li>Cash offers can close in 7–14 days — still viable but requires immediate action</li>
+  </ul>
+
+  <div class="callout-warning">
+    <strong>🚨 If You've Received an NTS — Act Today</strong>
+    Every day the NTS sits unaddressed is a day lost. Call Tiffany Lancaster at Stay In Your Home
+    Today at (435) 244-3210. We can assess your situation and tell you exactly which options
+    are still on the table.
+  </div>
+
+  <!-- Stage 3 -->
+  <h2 id="phase-3">Phase 3: Trustee's Sale (Day 111+)</h2>
+
+  <div class="timeline-stage timeline-stage--warning" style="margin:1.5rem 0;">
+    <div class="stage-badge stage-badge--warning">Day 111+ (often 240+)</div>
+    <h3>Trustee's Sale — Foreclosure Auction</h3>
+    <div class="stage-duration">Utah Code § 57-1-27</div>
+    <p>
+      The trustee's sale is conducted at the date and location published in the NTS.
+      Properties are auctioned to the highest bidder. If no one outbids the lender's opening
+      bid (which typically equals the loan balance plus costs), the lender takes title through
+      a trustee's deed.
+    </p>
+    <p style="margin-top:0.75rem;">
+      <strong>Important:</strong> Utah has no statutory right of redemption after a non-judicial
+      foreclosure. Once the gavel falls, the sale is final. There is no grace period to reclaim
+      your property.
+    </p>
+  </div>
+
+  <h3>What Happens to You After the Sale</h3>
+  <ul style="margin-bottom:1.5rem;">
+    <li>The new owner (lender or third-party buyer) holds title immediately</li>
+    <li>You receive a 3-day notice to vacate</li>
+    <li>If you do not vacate, the new owner files an unlawful detainer (eviction) action</li>
+    <li>The eviction process takes 3–6 weeks and results in a court-ordered removal</li>
+    <li>The foreclosure appears on your credit report for 7 years</li>
+    <li>Depending on the loan type, you may face a deficiency judgment for any balance remaining after the sale</li>
+  </ul>
+
+  <!-- Options section -->
+  <h2 id="options">Your Options Before the Auction — With Real Deadlines</h2>
+  <p>
+    Every option below is available to Utah homeowners after a Notice of Default. The deadline
+    column is the critical piece — these are not soft suggestions, they are hard cutoffs.
+  </p>
+
+  <div class="options-grid" style="margin:2rem 0;">
+
+    <div class="option-card">
+      <h3>Loan Modification</h3>
+      <span class="deadline-tag">Apply before Notice of Trustee's Sale for best results</span>
+      <p>
+        Restructure your loan with reduced interest, extended term, or deferred arrears.
+        Keeps you in the home. Requires verifiable income and lender approval.
+        Applications take 30–90 days — start immediately after NOD filing.
+      </p>
+    </div>
+
+    <div class="option-card option-card--featured">
+      <h3>Short Sale</h3>
+      <span class="deadline-tag">Active application required — 60–90 day process</span>
+      <p>
+        Sell the home for less than the balance owed, with lender forgiveness of the shortfall.
+        Avoids completed foreclosure on your credit. Tiffany Lancaster negotiates directly with
+        your lender on your behalf — at zero cost to you as the homeowner.
+      </p>
+    </div>
+
+    <div class="option-card">
+      <h3>Traditional Sale</h3>
+      <span class="deadline-tag deadline-tag--ok">Must close before auction date</span>
+      <p>
+        If equity exists, a traditional listing gives you the highest net proceeds and full
+        control. Must close before the trustee's sale. Typically requires 30–60 days —
+        most viable in Phase 1, very tight in Phase 2.
+      </p>
+    </div>
+
+    <div class="option-card option-card--featured">
+      <h3>Cash Offer</h3>
+      <span class="deadline-tag deadline-tag--ok">Can close in 7–21 days</span>
+      <p>
+        A cash buyer can close quickly, stopping the clock before the auction. Best
+        option in Phase 2 when time is short. You receive any equity above the payoff
+        amount. No repairs, no showings.
+      </p>
+    </div>
+
+    <div class="option-card">
+      <h3>Reinstatement</h3>
+      <span class="deadline-tag">Until 5 business days before trustee's sale</span>
+      <p>
+        Pay all past-due amounts, fees, and costs to bring the loan current. Stops the
+        foreclosure immediately. The loan continues as if the default never happened.
+        Requires access to the full reinstatement amount in a lump sum.
+      </p>
+    </div>
+
+    <div class="option-card">
+      <h3>Deed in Lieu</h3>
+      <span class="deadline-tag">Lender approval required — begin in Phase 1</span>
+      <p>
+        Voluntarily convey the deed to your lender in exchange for release of the mortgage
+        obligation. Avoids completed foreclosure. Not all lenders accept. Requires the
+        property to be free of other liens. Negotiate as early as possible.
+      </p>
+    </div>
+
+  </div>
+
+  <div style="background:var(--color-navy); border-radius:var(--radius-lg); padding:2rem; margin:2.5rem 0; text-align:center;">
+    <p style="color:rgba(255,255,255,0.85); font-size:1.05rem; margin-bottom:1.25rem;">
+      Not sure which option fits your situation? Stay In Your Home Today offers a free, no-obligation
+      review with CDPS-certified broker Tiffany Lancaster.
+    </p>
+    <div class="btn-group" style="justify-content:center;">
+      <a href="/contactus" class="btn btn--primary">Get My Free Options Review</a>
+      <a href="tel:+14352443210" class="btn btn--outline-white">(435) 244-3210</a>
+    </div>
+  </div>
+
+  <!-- FAQ section -->
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <h3>How long does foreclosure take in Utah?</h3>
+    <p>
+      Utah's non-judicial foreclosure process takes a minimum of 111 days from Notice of Default to
+      trustee's sale — but most sales occur around the 240-day mark from first missed payment. The
+      full timeline from first missed payment to auction typically spans 8–12 months.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <h3>What is a Notice of Default in Utah?</h3>
+    <p>
+      A Notice of Default (NOD) is a public legal document recorded by your lender after you've missed
+      payments — typically after 90+ days of delinquency. It officially starts the foreclosure clock.
+      Once filed, you have 90 days before the lender can record a Notice of Trustee's Sale.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Can I stop foreclosure after a Notice of Default in Utah?</h3>
+    <p>
+      Yes. After a Notice of Default, Utah homeowners have multiple options: reinstate the loan,
+      apply for a loan modification, pursue a short sale, sell traditionally, accept a cash offer,
+      negotiate a deed-in-lieu, or file for bankruptcy protection. The best option depends on your
+      equity, income, and timeline. A CDPS-certified broker can help you evaluate all paths.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Does Utah have a right of redemption after foreclosure?</h3>
+    <p>
+      No. Utah does not have a post-sale right of redemption for non-judicial foreclosures. Once the
+      trustee's sale is complete, the sale is final and you cannot reclaim the property by paying off
+      the debt.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <h3>How long do I have to move out after foreclosure in Utah?</h3>
+    <p>
+      After the trustee's sale, the new owner can begin eviction proceedings immediately. Utah law
+      requires a 3-day notice to vacate before filing an unlawful detainer action. The entire eviction
+      process typically takes 3–6 weeks from the sale date.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <h3>What is the difference between a short sale and foreclosure in Utah?</h3>
+    <p>
+      A short sale is a negotiated sale of your home for less than the mortgage balance, with lender
+      approval, before the foreclosure auction. It avoids the completed foreclosure on your credit
+      report, may eliminate the deficiency balance, and gives you more control over the timeline.
+      A completed foreclosure stays on your credit for 7 years and typically results in a larger
+      credit score drop than a short sale.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <h3>What is a CDPS-certified broker?</h3>
+    <p>
+      CDPS stands for Certified Distressed Property Specialist — a designation earned by real estate
+      brokers who have completed specialized training in foreclosure alternatives, short sales, and
+      working with lenders on behalf of distressed homeowners. Tiffany Lancaster at Stay In Your Home
+      Today holds this certification and works exclusively on the homeowner's side.
+    </p>
+  </div>
+
+</BlogPostLayout>

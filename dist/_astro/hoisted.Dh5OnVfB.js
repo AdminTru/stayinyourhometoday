@@ -1,0 +1,1 @@
+const e=document.getElementById("nav-toggle"),n=document.getElementById("nav-links"),o=document.getElementById("nav-cta");e?.addEventListener("click",()=>{const t=n?.classList.toggle("open");o?.classList.toggle("open",t),e.setAttribute("aria-expanded",String(t))});

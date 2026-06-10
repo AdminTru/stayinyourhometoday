@@ -1,0 +1,30 @@
+---
+export interface Props {
+  heading?: string;
+  subtext?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  showPhone?: boolean;
+}
+
+const {
+  heading = "Not sure what your options are?",
+  subtext = "Talk to a CDPS-certified agent — free, confidential, and no obligation.",
+  primaryLabel = "Get My Free Options Review",
+  primaryHref = "/contactus",
+  showPhone = true,
+} = Astro.props;
+---
+
+<section class="cta-section">
+  <div class="container">
+    <h2>{heading}</h2>
+    <p>{subtext}</p>
+    <div class="btn-group" style="justify-content:center;">
+      <a href={primaryHref} class="btn btn--primary btn--lg">{primaryLabel}</a>
+      {showPhone && (
+        <a href="tel:+14352443210" class="btn btn--outline-white btn--lg">(435) 244-3210</a>
+      )}
+    </div>
+  </div>
+</section>

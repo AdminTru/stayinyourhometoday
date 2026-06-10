@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WebflowForm from '../components/WebflowForm.astro';
+
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Stay In Your Home — Free Mortgage Help",
+  "description": "Contact Stay In Your Home Today for a free, confidential foreclosure options review with CDPS-certified broker Tiffany Lancaster.",
+  "url": "https://stayinyourhometoday.com/contactus",
+  "mainEntity": {
+    "@type": "LocalBusiness",
+    "name": "Stay In Your Home Today",
+    "telephone": "(435) 244-3210",
+    "email": "brad@truhomebuyer.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "UT",
+      "addressCountry": "US"
+    }
+  }
+};
+---
+
+<BaseLayout
+  title="Contact Us | Stay In Your Home Today — Free Mortgage Help"
+  description="Get a free, confidential foreclosure options review from CDPS-certified broker Tiffany Lancaster. Call (435) 244-3210 or fill out the form — no obligation."
+  schema={contactPageSchema}
+>
+
+  <!-- Page header -->
+  <section class="page-header">
+    <div class="container">
+      <div class="eyebrow">Free · Confidential · No Obligation</div>
+      <h1>Stay In Your Home — Free Mortgage Help</h1>
+      <p>
+        Tiffany Lancaster and the Stay In Your Home Today team are standing by.
+        Fill out the form below or call us directly — we'll review your situation
+        and walk you through every option available.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact info bar -->
+  <div class="contact-info-bar">
+    <a href="tel:+14352443210" aria-label="Call us at (435) 244-3210">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.41 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.4a16 16 0 0 0 5.55 5.55l.76-.76a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      (435) 244-3210 — Call or Text
+    </a>
+    <a href="mailto:brad@truhomebuyer.com" aria-label="Email brad@truhomebuyer.com">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      brad@truhomebuyer.com
+    </a>
+  </div>
+
+  <!-- Webflow form embed -->
+  <WebflowForm />
+
+  <!-- Reassurance section -->
+  <section class="section section--alt">
+    <div class="container" style="max-width:720px; text-align:center;">
+      <h2>What Happens After You Submit?</h2>
+      <p style="color:var(--color-gray-500); font-size:1.05rem; margin-bottom:2rem;">
+        Tiffany Lancaster or a member of the Stay In Your Home Today team will reach out within
+        one business day — usually much sooner. Your information is strictly confidential and
+        will never be shared or sold.
+      </p>
+      <div class="grid-3" style="text-align:left; max-width:700px; margin:0 auto;">
+        <div class="card">
+          <div style="color:var(--color-teal); font-size:1.5rem; margin-bottom:0.5rem;">①</div>
+          <h4>We Review Your Situation</h4>
+          <p style="font-size:0.88rem; color:var(--color-gray-500);">We look at your NOD date, mortgage balance, and equity to map your real options.</p>
+        </div>
+        <div class="card">
+          <div style="color:var(--color-teal); font-size:1.5rem; margin-bottom:0.5rem;">②</div>
+          <h4>We Explain Every Option</h4>
+          <p style="font-size:0.88rem; color:var(--color-gray-500);">Loan mod, short sale, traditional sale, cash offer, deed-in-lieu — we cover them all honestly.</p>
+        </div>
+        <div class="card">
+          <div style="color:var(--color-teal); font-size:1.5rem; margin-bottom:0.5rem;">③</div>
+          <h4>You Decide — No Pressure</h4>
+          <p style="font-size:0.88rem; color:var(--color-gray-500);">We never push a single solution. You make the decision that's right for your family.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
