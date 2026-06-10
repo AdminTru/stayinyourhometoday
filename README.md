@@ -100,16 +100,16 @@ const articleSchema = {
 
 ## Personalized URLs (Direct Mail)
 
-The `/home` page supports `?name=FirstName` for personalized greetings:
+The `/home` page supports `?fn=FirstName` for personalized greetings:
 
 ```
-https://stayinyourhometoday.com/home?name=John
+https://stayinyourhometoday.com/home?fn=John
 ```
 
-It also supports `?nod=YYYY-MM-DD` to populate the countdown timers:
+It also supports `?nod=MM/DD/YY` (Notice of Default date) to populate the countdown timers:
 
 ```
-https://stayinyourhometoday.com/home?name=John&nod=2026-03-01
+https://stayinyourhometoday.com/home?fn=John&nod=03/01/26
 ```
 
 Both parameters degrade gracefully — the page is fully readable without them.
